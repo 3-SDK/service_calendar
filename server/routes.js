@@ -2,12 +2,12 @@ const router = require('express').Router();
 const controller = require('./controllers/controllers.js');
 
 // Connect controller methods to their corresponding routes
-router.get('/:id', controller.get);
+router.get('/calendar/:id', controller.get);
 
-router.post('/:id', controller.post);
+router.post('/calendar/:id', controller.post);
 
-router.put('/:id', controller.put);
+router.put('/calendar/:id', controller.put);
 
-router.delete('/:id', controller.delete);
+router.delete('/calendar/:id', controller.delete);
 
 module.exports = router;

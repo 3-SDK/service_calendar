@@ -4,21 +4,21 @@
 
 ### GET
 ```
-GET /hotels/:id
-curl http://localhost:1128/hotels/2
+GET /hotels/calendar/:id
+curl http://localhost:1128/hotels/calendar/2
 ```
 ### POST
 ```
-POST /hotels/:id
-curl -X POST http://localhost:1128/hotels/2
+POST /hotels/calendar/:id
+curl -X POST http://localhost:1128/hotels/calendar/2
 ```
 ### PUT
 ```
-PUT /hotels/:id
-curl -X PUT http://localhost:1128/hotels/2
+PUT /hotels/calendar/:id
+curl -X PUT http://localhost:1128/hotels/calendar/2
 ```
 ### DELETE
 ```
-DELETE /hotels/:id
-curl -X DELETE http://localhost:1128/hotels/2
+DELETE /hotels/calendar/:id
+curl -X DELETE http://localhost:1128/hotels/calendar/2
 ```
