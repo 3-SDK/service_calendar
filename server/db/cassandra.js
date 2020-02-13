@@ -6,26 +6,80 @@ const client = new cassandra.Client({
   keyspace: 'ks1',
 });
 
-const readItem = () => {
+// Test
+// const readItem = () => new Promise((resolve, reject) => {
+//   resolve('Success');
+//   reject('Failure');
+// });
+
+// Promises
+
+const readItem = () => new Promise((resolve, reject) => {
   const query = '';
-  client.execute(query)
-    .then((result) => { console.log(result); });
-};
-const createItem = () => {
+  client.execute(query, null, null, (err, results) => {
+    if (err) {
+      reject(err);
+    } else {
+      resolve(results);
+    }
+  });
+});
+
+const createItem = () => new Promise((resolve, reject) => {
   const query = '';
-  client.execute(query)
-    .then((result) => { console.log(result); });
-};
-const updateItem = () => {
+  client.execute(query, null, null, (err, results) => {
+    if (err) {
+      reject(err);
+    } else {
+      resolve(results);
+    }
+  });
+});
+
+const updateItem = () => new Promise((resolve, reject) => {
   const query = '';
-  client.execute(query)
-    .then((result) => { console.log(result); });
-};
-const deleteItem = () => {
+  client.execute(query, null, null, (err, results) => {
+    if (err) {
+      reject(err);
+    } else {
+      resolve(results);
+    }
+  });
+});
+
+const deleteItem = () => new Promise((resolve, reject) => {
   const query = '';
-  client.execute(query)
-    .then((result) => { console.log(result); });
-};
+  client.execute(query, null, null, (err, results) => {
+    if (err) {
+      reject(err);
+    } else {
+      resolve(results);
+    }
+  });
+});
+
+// Callbacks
+
+// const readItem = () => {
+//   const query = '';
+//   client.execute(query)
+//     .then((result) => { console.log(result); });
+// };
+// const createItem = () => {
+//   const query = '';
+//   client.execute(query)
+//     .then((result) => { console.log(result); });
+// };
+// const updateItem = () => {
+//   const query = '';
+//   client.execute(query)
+//     .then((result) => { console.log(result); });
+// };
+// const deleteItem = () => {
+//   const query = '';
+//   client.execute(query)
+//     .then((result) => { console.log(result); });
+// };
 
 module.exports = {
   readItem,
