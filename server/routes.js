@@ -1,13 +1,13 @@
 const router = require('express').Router();
-const controller = require('./controllers');
+const controller = require('./controllers/controllers.js');
 
 // Connect controller methods to their corresponding routes
-router.get('/', controller.get);
+router.get('/:id', controller.get);
 
-router.post('/', controller.post);
+router.post('/:id', controller.post);
 
-router.put('/', controller.put);
+router.put('/:id', controller.put);
 
-router.delete('/', controller.delete);
+router.delete('/:id', controller.delete);
 
 module.exports = router;
