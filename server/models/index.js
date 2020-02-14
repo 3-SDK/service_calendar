@@ -5,4 +5,5 @@ module.exports = {
   post: () => db.createItem(),
   put: () => db.updateItem(),
   delete: () => db.deleteItem(),
+  getPrices: () => db.getPrices(),
 };

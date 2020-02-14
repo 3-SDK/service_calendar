@@ -10,4 +10,6 @@ router.put('/calendar/:id', controller.put);
 
 router.delete('/calendar/:id', controller.delete);
 
+router.get('/calendar/prices/:id', controller.getPrices);
+
 module.exports = router;

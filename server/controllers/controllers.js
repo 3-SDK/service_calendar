@@ -43,6 +43,16 @@ module.exports = {
         res.sendStatus(400);
       });
   },
+  getPrices: (req, res) => {
+    models.getPrices()
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.sendStatus(400);
+      });
+  },
 };
 
 // Callbacks
