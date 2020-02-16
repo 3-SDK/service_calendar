@@ -4,6 +4,7 @@ const models = require('../models');
 
 module.exports = {
   get: (req, res) => {
+    console.log(req.params);
     models.get()
       .then((data) => {
         res.json(data);
@@ -37,6 +38,16 @@ module.exports = {
     models.delete()
       .then((data) => {
         res.sendStatus(200);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.sendStatus(400);
+      });
+  },
+  getPrices: (req, res) => {
+    models.getPrices()
+      .then((data) => {
+        res.json(data);
       })
       .catch((err) => {
         console.log(err);

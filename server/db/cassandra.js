@@ -9,7 +9,7 @@ const client = new cassandra.Client({
 // Test
 // const readItem = () => new Promise((resolve, reject) => {
 //   resolve('Success');
-//   reject('Failure');
+//   // reject('Failure');
 // });
 
 // Promises
@@ -58,6 +58,17 @@ const deleteItem = () => new Promise((resolve, reject) => {
   });
 });
 
+const getPrices = () => new Promise((resolve, reject) => {
+  const query = '';
+  client.execute(query, null, null, (err, results) => {
+    if (err) {
+      reject(err);
+    } else {
+      resolve(results);
+    }
+  });
+});
+
 // Callbacks
 
 // const readItem = () => {
@@ -86,4 +97,5 @@ module.exports = {
   createItem,
   updateItem,
   deleteItem,
+  getPrices,
 };

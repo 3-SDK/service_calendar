@@ -10,4 +10,6 @@ router.put('/:id', controller.put);
 
 router.delete('/:id', controller.delete);
 
+router.get('/prices/:id', controller.getPrices);
+
 module.exports = router;
