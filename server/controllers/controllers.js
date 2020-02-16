@@ -4,6 +4,7 @@ const models = require('../models');
 
 module.exports = {
   get: (req, res) => {
+    console.log(req.params);
     models.get()
       .then((data) => {
         res.json(data);

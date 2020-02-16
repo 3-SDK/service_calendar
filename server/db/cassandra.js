@@ -9,7 +9,7 @@ const client = new cassandra.Client({
 // Test
 // const readItem = () => new Promise((resolve, reject) => {
 //   resolve('Success');
-//   reject('Failure');
+//   // reject('Failure');
 // });
 
 // Promises
