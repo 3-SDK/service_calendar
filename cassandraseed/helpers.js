@@ -13,29 +13,32 @@ const getRandomIntInclusive = (min, max) => {
 // ========= Hotels table: Hotel data for Cassandra ========= //
 
 // Hotel info
-const hotelInfo = () => `${faker.lorem.word()}, ${getRandomIntInclusive(0, 1000)}`;
+const hotelInfo = () => `${faker.lorem.word()}|${getRandomIntInclusive(0, 1000)}`;
 
 // Room capacities
-const roomCapacity = () => `${getRandomIntInclusive(0, 100)}, ${getRandomIntInclusive(0, 100)}, ${getRandomIntInclusive(0, 100)}, ${getRandomIntInclusive(0, 100)}`;
+const roomCapacity = () => `${getRandomIntInclusive(0, 100)}|${getRandomIntInclusive(0, 100)}|${getRandomIntInclusive(0, 100)}|${getRandomIntInclusive(0, 100)}`;
+
+// Partner names
+const siteNames = () => `{${faker.internet.domainName()}, ${faker.internet.domainName()}, ${faker.internet.domainName()}, ${faker.internet.domainName()}, ${faker.internet.domainName()}}`;
 
 // ---- PRICING ---- //
 // Prices for 1 person per room
-const onePerson = () => `${getRandomIntInclusive(0, 100)}, ${getRandomIntInclusive(0, 90)}`;
+const onePerson = () => `${getRandomIntInclusive(0, 100)}|${getRandomIntInclusive(0, 90)}|${siteNames()}`;
 
 // Prices for 2 person per room
-const twoPerson = () => `${getRandomIntInclusive(0, 150)}, ${getRandomIntInclusive(0, 120)}`;
+const twoPerson = () => `${getRandomIntInclusive(0, 150)}|${getRandomIntInclusive(0, 120)}|${siteNames()}`;
 
 // Prices for 3 person per room
-const threePerson = () => `${getRandomIntInclusive(0, 200)}, ${getRandomIntInclusive(0, 160)}`;
+const threePerson = () => `${getRandomIntInclusive(0, 200)}|${getRandomIntInclusive(0, 160)}|${siteNames()}`;
 
 // Prices for 4 person per room
-const fourPerson = () => `${getRandomIntInclusive(0, 250)}, ${getRandomIntInclusive(0, 200)}`;
+const fourPerson = () => `${getRandomIntInclusive(0, 250)}|${getRandomIntInclusive(0, 200)}|${siteNames()}`;
 
 // Room pricing
-const partnerPricing = () => `${onePerson()}, ${twoPerson()}, ${threePerson()}, ${fourPerson()}`;
+const partnerPricing = () => `${onePerson()}|${twoPerson()}|${threePerson()}|${fourPerson()}|${siteNames()}`;
 
 // ////// Generate all data ////////////////////
-const generateHotelData = (idx) => `${idx}, ${hotelInfo()}, ${roomCapacity()}, ${faker.internet.domainName()}, ${partnerPricing()}\n`;
+const generateHotelData = (idx) => `${idx}|${hotelInfo()}|${roomCapacity()}|${partnerPricing()}\n`;
 
 // ========= Bookings table: Bookings data for Cassandra ========= //
 
@@ -92,9 +95,9 @@ const bookedDates = () => {
 };
 
 // Type of room booked
-const roomInfo = () => `${getRandomIntInclusive(1, 4)}, ${getRandomIntInclusive(0, 100)}`;
+const roomInfo = () => `${getRandomIntInclusive(1, 4)}|${getRandomIntInclusive(0, 100)}`;
 
-const generateBookingData = (idx) => `${idx}, ${getRandomIntInclusive(1, 99999999)}, ${bookedDates()}, ${roomInfo()}\n`;
+const generateBookingData = (idx) => `${idx}|${getRandomIntInclusive(1, 99999999)}|${bookedDates()}|${roomInfo()}\n`;
 
 module.exports = {
   generateHotelData,

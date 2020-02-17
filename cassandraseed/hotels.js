@@ -5,7 +5,7 @@ const { performance } = require('perf_hooks');
 const { generateHotelData } = require('./helpers.js');
 
 const writeStream = fs.createWriteStream('./hotels.csv', 'utf8');
-writeStream.write('id, hotel_name, views, max_1_person_rooms, max_2_person_rooms, max_3_person_rooms, max_4_person_rooms, site_name, 1_perRoom_price, 1_perRoom_discount, 2_perRoom_price, 2_perRoom_discount, 3_perRoom_price, 3_perRoom_discount, 4_perRoom_price, 4_perRoom_discount\n');
+writeStream.write('id, hotel_name, views, one_person_max_rooms, two_person_max_rooms, three_person_max_rooms, four_person_max_rooms, site_name, one_person_room_price, one_person_room_discounted_price, one_person_partner_names, two_person_room_price, two_person_room_discounted_price, two_person_partner_names, three_person_room_price, three_person_room_discounted_price, three_person_partner_names, four_person_room_price, four_person_room_discounted_price, four_person_partner_names\n');
 
 function writeTenMillionTimes(writer, data, encoding, callback) {
   let i = 10000000;
