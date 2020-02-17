@@ -19,7 +19,7 @@ const hotelInfo = () => `${faker.lorem.word()}|${getRandomIntInclusive(0, 1000)}
 const roomCapacity = () => `${getRandomIntInclusive(0, 100)}|${getRandomIntInclusive(0, 100)}|${getRandomIntInclusive(0, 100)}|${getRandomIntInclusive(0, 100)}`;
 
 // Partner names
-const siteNames = () => `{${faker.internet.domainName()}, ${faker.internet.domainName()}, ${faker.internet.domainName()}, ${faker.internet.domainName()}, ${faker.internet.domainName()}}`;
+const siteNames = () => `{'${faker.internet.domainName()}', '${faker.internet.domainName()}', '${faker.internet.domainName()}', '${faker.internet.domainName()}', '${faker.internet.domainName()}'}`;
 
 // ---- PRICING ---- //
 // Prices for 1 person per room
@@ -35,7 +35,7 @@ const threePerson = () => `${getRandomIntInclusive(0, 200)}|${getRandomIntInclus
 const fourPerson = () => `${getRandomIntInclusive(0, 250)}|${getRandomIntInclusive(0, 200)}|${siteNames()}`;
 
 // Room pricing
-const partnerPricing = () => `${onePerson()}|${twoPerson()}|${threePerson()}|${fourPerson()}|${siteNames()}`;
+const partnerPricing = () => `${onePerson()}|${twoPerson()}|${threePerson()}|${fourPerson()}`;
 
 // ////// Generate all data ////////////////////
 const generateHotelData = (idx) => `${idx}|${hotelInfo()}|${roomCapacity()}|${partnerPricing()}\n`;
@@ -81,8 +81,11 @@ const bookedDates = () => {
     endMonth = getRandomIntInclusive(startMonth, 12);
     // Make sure you don't generate a day before the previous day
     const previousDay = day;
-    generateDay(endMonth);
-    day = getRandomIntInclusive(previousDay, day);
+    if (startMonth === endMonth) {
+      day = getRandomIntInclusive(previousDay, day);
+    } else {
+      generateDay(endMonth);
+    }
   }
 
   // Pad the month and day if needed
@@ -91,11 +94,11 @@ const bookedDates = () => {
 
   const endDate = `${year}-${strMonth}-${strDay}`;
 
-  return `${startDate}, ${endDate}`;
+  return `${startDate}|${endDate}`;
 };
 
 // Type of room booked
-const roomInfo = () => `${getRandomIntInclusive(1, 4)}|${getRandomIntInclusive(0, 100)}`;
+const roomInfo = () => `${getRandomIntInclusive(1, 4)}|${getRandomIntInclusive(1, 10)}`;
 
 const generateBookingData = (idx) => `${idx}|${getRandomIntInclusive(1, 99999999)}|${bookedDates()}|${roomInfo()}\n`;
 
