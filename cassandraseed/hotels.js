@@ -1,15 +1,11 @@
-const faker = require('faker');
-
 const fs = require('fs');
 
 const { performance } = require('perf_hooks');
 
-const write = fs.createWriteStream('./hotels.csv', 'utf8');
-write.write('id, hotel_name, views, max_1_person_rooms, max_2_person_rooms, max_3_person_rooms, max_4_person_rooms\n');
+const { generateHotelData } = require('./helpers.js');
 
-const generateData = (idx) => {
-  return `${idx}, ${faker.lorem.word()}, ${faker.random.number({ min: 0, max: 1000 })}, ${faker.random.number({ min: 0, max: 100 })}, ${faker.random.number({ min: 0, max: 100 })}, ${faker.random.number({ min: 0, max: 100 })}, ${faker.random.number({ min: 0, max: 100 })}\n`
-}
+const write = fs.createWriteStream('./hotels.csv', 'utf8');
+write.write('id, hotel_name, views, max_1_person_rooms, max_2_person_rooms, max_3_person_rooms, max_4_person_rooms, site_name, 1_perRoom_price, 1_perRoom_discount, 2_perRoom_price, 2_perRoom_discount, 3_perRoom_price, 3_perRoom_discount, 4_perRoom_price, 4_perRoom_discount\n');
 
 function writeTenMillionTimes(writer, data, encoding, callback) {
   var i = 10000000;
@@ -24,7 +20,7 @@ function writeTenMillionTimes(writer, data, encoding, callback) {
       } else {
         // see if we should continue, or wait
         // don't pass the callback, because we're not done yet.
-        data = generateData(10000000-i);
+        data = generateHotelData(10000000-i);
         ok = writer.write(data, encoding);
       }
     } while (i > 0 && ok);
