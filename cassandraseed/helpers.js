@@ -4,59 +4,44 @@ const faker = require('faker');
 const getRandomIntInclusive = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
-}
+  // The maximum is inclusive and the minimum is inclusive
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 
-////////////////////////////////////////////////////////////// CASSANDRA //////////////////////////////////////////////////////////////
+// ///////////////////////////////////////// CASSANDRA ///////////////////////////////////////////
 
 // ========= Hotels table: Hotel data for Cassandra ========= //
 
 // Hotel info
-const hotelInfo = () => {
-  return `${faker.lorem.word()}, ${getRandomIntInclusive(0, 1000)}`
-}
+const hotelInfo = () => `${faker.lorem.word()}, ${getRandomIntInclusive(0, 1000)}`;
 
 // Room capacities
-const roomCapacity = () => {
-  return `${getRandomIntInclusive(0, 100)}, ${getRandomIntInclusive(0, 100)}, ${getRandomIntInclusive(0, 100)}, ${getRandomIntInclusive(0, 100)}`
-}
+const roomCapacity = () => `${getRandomIntInclusive(0, 100)}, ${getRandomIntInclusive(0, 100)}, ${getRandomIntInclusive(0, 100)}, ${getRandomIntInclusive(0, 100)}`;
 
 // ---- PRICING ---- //
 // Prices for 1 person per room
-const onePerson = () => {
-  return `${getRandomIntInclusive(0, 100)}, ${getRandomIntInclusive(0, 90)}`
-}
+const onePerson = () => `${getRandomIntInclusive(0, 100)}, ${getRandomIntInclusive(0, 90)}`;
 
 // Prices for 2 person per room
-const twoPerson = () => {
-  return `${getRandomIntInclusive(0, 150)}, ${getRandomIntInclusive(0, 120)}`
-}
+const twoPerson = () => `${getRandomIntInclusive(0, 150)}, ${getRandomIntInclusive(0, 120)}`;
 
 // Prices for 3 person per room
-const threePerson = () => {
-  return `${getRandomIntInclusive(0, 200)}, ${getRandomIntInclusive(0, 160)}`
-}
+const threePerson = () => `${getRandomIntInclusive(0, 200)}, ${getRandomIntInclusive(0, 160)}`;
 
 // Prices for 4 person per room
-const fourPerson = () => {
-  return `${getRandomIntInclusive(0, 250)}, ${getRandomIntInclusive(0, 200)}`
-}
+const fourPerson = () => `${getRandomIntInclusive(0, 250)}, ${getRandomIntInclusive(0, 200)}`;
 
 // Room pricing
-const partnerPricing = () => {
-  return `${onePerson()}, ${twoPerson()}, ${threePerson()}, ${fourPerson()}`
-}
-// ========= Bookings table: Bookings data for Cassandra ========= //
-//////// Generate all data ////////////////////
-const generateHotelData = (idx) => {
-  return `${idx}, ${hotelInfo()}, ${roomCapacity()}, ${faker.internet.domainName()}, ${partnerPricing()}\n`
-}
+const partnerPricing = () => `${onePerson()}, ${twoPerson()}, ${threePerson()}, ${fourPerson()}`;
+
+// ////// Generate all data ////////////////////
+const generateHotelData = (idx) => `${idx}, ${hotelInfo()}, ${roomCapacity()}, ${faker.internet.domainName()}, ${partnerPricing()}\n`;
 
 // ========= Bookings table: Bookings data for Cassandra ========= //
 
 // Booked dates for room
 const bookedDates = () => {
-  let startMonth = getRandomIntInclusive(1, 12);
+  const startMonth = getRandomIntInclusive(1, 12);
   let year = getRandomIntInclusive(2020, 2021);
   let day;
 
@@ -73,7 +58,7 @@ const bookedDates = () => {
     } else {
       day = getRandomIntInclusive(1, 31);
     }
-  }
+  };
 
   generateDay(startMonth);
 
@@ -92,7 +77,7 @@ const bookedDates = () => {
     // Same year, generate previous month and above
     endMonth = getRandomIntInclusive(startMonth, 12);
     // Make sure you don't generate a day before the previous day
-    let previousDay = day;
+    const previousDay = day;
     generateDay(endMonth);
     day = getRandomIntInclusive(previousDay, day);
   }
@@ -104,18 +89,14 @@ const bookedDates = () => {
   const endDate = `${year}-${strMonth}-${strDay}`;
 
   return `${startDate}, ${endDate}`;
-}
+};
 
 // Type of room booked
-const roomInfo = () => {
-  return `${getRandomIntInclusive(1, 4)}, ${getRandomIntInclusive(0, 100)}`
-}
+const roomInfo = () => `${getRandomIntInclusive(1, 4)}, ${getRandomIntInclusive(0, 100)}`;
 
-const generateBookingData = (idx) => {
-  return `${idx}, ${getRandomIntInclusive(1, 99999999)}, ${bookedDates()}, ${roomInfo()}\n`
-}
+const generateBookingData = (idx) => `${idx}, ${getRandomIntInclusive(1, 99999999)}, ${bookedDates()}, ${roomInfo()}\n`;
 
 module.exports = {
   generateHotelData,
   generateBookingData,
-}
+};
