@@ -9,7 +9,7 @@ CREATE TABLE hotels (
 );
 
 CREATE TABLE partners (
-  id INTEGER PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   one_person_room_price INTEGER,
   one_person_room_discounted_price INTEGER,
   one_person_partner_names TEXT [],
