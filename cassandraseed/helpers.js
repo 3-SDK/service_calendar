@@ -100,7 +100,7 @@ const bookedDates = () => {
 // Type of room booked
 const roomInfo = () => `${getRandomIntInclusive(1, 4)}|${getRandomIntInclusive(1, 10)}`;
 
-const generateBookingData = (idx) => `${idx}|${getRandomIntInclusive(1, 99999999)}|${bookedDates()}|${roomInfo()}\n`;
+const generateBookingData = (idx) => `${idx}|${getRandomIntInclusive(1, 9999999)}|${bookedDates()}|${roomInfo()}\n`;
 
 module.exports = {
   generateHotelData,
