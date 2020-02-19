@@ -102,7 +102,11 @@ const roomInfo = () => `${getRandomIntInclusive(1, 4)}|${getRandomIntInclusive(1
 
 const generateBookingData = (idx) => `${idx}|${getRandomIntInclusive(1, 9999999)}|${bookedDates()}|${roomInfo()}\n`;
 
+// VIEWERS
+const viewers = (idx) => `${idx}|{'${faker.internet.ip()}', '${faker.internet.ip()}', '${faker.internet.ip()}', '${faker.internet.ip()}', '${faker.internet.ip()}'}\n`;
+
 module.exports = {
   generateHotelData,
   generateBookingData,
+  viewers,
 };
