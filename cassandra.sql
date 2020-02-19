@@ -30,8 +30,13 @@ CREATE TABLE hotels (
   three_person_partner_names set<text>,
   four_person_room_price int,
   four_person_room_discounted_price int,
-  four_person_partner_names set<text>
+  four_person_partner_names set<text>,
+  -- viewing_hotel set<text>
 );
+
+CREATE TABLE ids (
+  
+)
 
   -- one_person_max_rooms, two_person_max_rooms, three_person_max_rooms, four_person_max_rooms, one_person_room_price, one_person_room_discounted_price, one_person_partner_names, two_person_room_price, two_person_room_discounted_price, two_person_partner_names, three_person_room_price, three_person_room_discounted_price, three_person_partner_names, four_person_room_price, four_person_room_discounted_price, four_person_partner_names
 

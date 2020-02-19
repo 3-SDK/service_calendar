@@ -1,11 +1,12 @@
 CREATE TABLE hotels (
-  id INTEGER PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   hotel_name VARCHAR(255),
   views INTEGER,
   one_person_max_rooms INTEGER,
   two_person_max_rooms INTEGER,
   three_person_max_rooms INTEGER,
-  four_person_max_rooms INTEGER
+  four_person_max_rooms INTEGER,
+  -- viewing_hotel TEXT []
 );
 
 CREATE TABLE partners (
@@ -26,7 +27,7 @@ CREATE TABLE partners (
 );
 
 CREATE TABLE bookings (
-  id INTEGER PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   hotel_id INTEGER REFERENCES hotels(id),
   booked_start_date VARCHAR(50),
   booked_end_date VARCHAR(50),
