@@ -7,7 +7,17 @@ CREATE TABLE bookings (
   booked_end_date date,
   person_room_type int,
   booked_rooms int,
-  PRIMARY KEY(id, hotel_id)
+  PRIMARY KEY(hotel_id, id)
+);
+
+CREATE TABLE bookings_by_room_type (
+  id int,
+  hotel_id int,
+  booked_start_date date,
+  booked_end_date date,
+  person_room_type int,
+  booked_rooms int,
+  PRIMARY KEY(hotel_id, person_room_type, id)
 );
 
 -- Different names
@@ -36,7 +46,7 @@ CREATE TABLE hotels (
 
 CREATE TABLE ids (
   
-)
+);
 
   -- one_person_max_rooms, two_person_max_rooms, three_person_max_rooms, four_person_max_rooms, one_person_room_price, one_person_room_discounted_price, one_person_partner_names, two_person_room_price, two_person_room_discounted_price, two_person_partner_names, three_person_room_price, three_person_room_discounted_price, three_person_partner_names, four_person_room_price, four_person_room_discounted_price, four_person_partner_names
 

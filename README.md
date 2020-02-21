@@ -2,9 +2,9 @@
 
 ## Table of Contents
 1. [API](#API)
-  * [Hotels](#Hotels)
-  * [Pricing](#Pricing)
-  * [Bookings](#Bookings)
+    * [Hotels](#Hotels)
+    * [Pricing](#Pricing)
+    * [Bookings](#Bookings)
 
 ## API
 
@@ -13,19 +13,20 @@
 ```
 GET /hotels/:id
 # Get information about the hotel based on id. Default is 2-person room.
+
 Request Body: None.
 
 Response: {
   id: 1,
-  name: Revolution,
+  hotel_name: Revolution,
   views: 10,
-  1_person_max_rooms: 20,
-  2_person_max_rooms: 30,
-  3_person_max_rooms: 40,
-  4_person_max_rooms: 50,
-  two_person_price: 150,
-  two_person_discounted_price: 120,
-  two_person_partner_names: 120
+  one_person_max_rooms: 20,
+  two_person_max_rooms: 30,
+  three_person_max_rooms: 40,
+  four_person_max_rooms: 50,
+  two_person_room_price: 150,
+  two_person_room_discounted_price: 120,
+  two_person_partner_names: ['domain.com', 'domain.com', 'domain.com', 'domain.com', 'domain.com']
 }
 ```
 ### POST
@@ -39,7 +40,7 @@ Response: HTTP/1.1 200 OK
 ### PUT
 ```
 PUT /hotels/:id/views
-# Update the view counter for visiting the page.
+# Update the view counter and add viewer for visiting the page.
 
 Request Body: {
   ipv4: '172.0.0.1'
@@ -68,10 +69,21 @@ GET /hotels/:id/prices?type='room-type'
 Request Body: None.
 
 Response = {
-  site_name: Revolution,
-  1_person_rooms_price: 100,
-  1_person_rooms_discounted_price: null
+  one_person_rooms_price: 100,
+  one_person_rooms_discounted_price: 80,
+  one_person_partner_names: ['domain.com', 'domain.com', 'domain.com', 'domain.com', 'domain.com']
 }
+```
+## PUT
+```
+PUT /hotels/:id/prices?type='room-type'
+# Update partner pricing for certain room type hotel
+
+Request Body: {
+  pricing: 100
+}
+
+Reponse: HTTP/1.1 200 OK
 ```
 
 ## Bookings
@@ -139,6 +151,14 @@ Request Body: {
   person_room_type: 1,
   booked_rooms: 2
 }
+
+Reponse: HTTP/1.1 200 OK
+```
+### DELETE
+```
+DELETE /hotels/:id/bookings/
+
+Request Body: None.
 
 Reponse: HTTP/1.1 200 OK
 ```
