@@ -74,6 +74,17 @@ Response = {
   one_person_partner_names: ['domain.com', 'domain.com', 'domain.com', 'domain.com', 'domain.com']
 }
 ```
+## PUT
+```
+PUT /hotels/:id/prices?type='room-type'
+# Update partner pricing for certain room type hotel
+
+Request Body: {
+  pricing: 100
+}
+
+Reponse: HTTP/1.1 200 OK
+```
 
 ## Bookings
 ### GET
@@ -140,6 +151,14 @@ Request Body: {
   person_room_type: 1,
   booked_rooms: 2
 }
+
+Reponse: HTTP/1.1 200 OK
+```
+### DELETE
+```
+DELETE /hotels/:id/bookings/
+
+Request Body: None.
 
 Reponse: HTTP/1.1 200 OK
 ```
