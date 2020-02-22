@@ -79,7 +79,7 @@ const addBooking = (params) => new Promise((resolve, reject) => {
   } = params;
 
   const queryStr = `INSERT INTO bookings (hotel_id, booked_start_date, booked_end_date, person_room_type, booked_rooms) \
-                    VALUES (${Number(hotelID)}, ${startDate}, ${endDate}, ${Number(roomType)}, ${Number(rooms)});`;
+                    VALUES (${hotelID}, '${startDate}', '${endDate}', ${Number(roomType)}, ${Number(rooms)});`;
 
   db
     .query(queryStr)
@@ -87,8 +87,10 @@ const addBooking = (params) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-const deleteBooking = () => new Promise((resolve, reject) => {
-  const queryStr = ``;
+const deleteBooking = (params) => new Promise((resolve, reject) => {
+  const { id, bookID } = params;
+
+  const queryStr = `DELETE FROM bookings WHERE id = ${Number(bookID)} AND hotel_id = ${Number(id)};`;
 
   db
     .query(queryStr)

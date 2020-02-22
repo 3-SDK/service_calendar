@@ -74,7 +74,7 @@ module.exports = {
       });
   },
   deleteBooking: (req, res) => {
-    models.deleteBooking()
+    models.deleteBooking(req.params)
       .then(() => {
         res.sendStatus(200);
       })
