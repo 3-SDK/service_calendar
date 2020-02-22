@@ -3,54 +3,83 @@ const models = require('../models');
 // Promises
 
 module.exports = {
-  get: (req, res) => {
-    console.log(req.params);
-    models.get()
+  getHotelInfo: (req, res) => {
+    models.getHotelInfo(req.params.id)
       .then((data) => {
         res.json(data);
       })
       .catch((err) => {
-        console.log(err);
-        res.sendStatus(400);
-      });
-  },
-  post: (req, res) => {
-    models.post()
-      .then((data) => {
-        res.sendStatus(201);
-      })
-      .catch((err) => {
-        console.log(err);
-        res.sendStatus(400);
-      });
-  },
-  put: (req, res) => {
-    models.put()
-      .then((data) => {
-        res.sendStatus(200);
-      })
-      .catch((err) => {
-        console.log(err);
-        res.sendStatus(400);
-      });
-  },
-  delete: (req, res) => {
-    models.delete()
-      .then((data) => {
-        res.sendStatus(200);
-      })
-      .catch((err) => {
-        console.log(err);
+        console.error(err);
         res.sendStatus(400);
       });
   },
   getPrices: (req, res) => {
-    models.getPrices()
+    const { id } = req.params;
+    const param = req.query.type;
+
+    models.getPrices(id, param)
       .then((data) => {
         res.json(data);
       })
       .catch((err) => {
         console.log(err);
+        res.sendStatus(400);
+      });
+  },
+  updatePrices: (req, res) => {
+    const { id } = req.params;
+    const param = Number(req.query.type);
+    const { price } = req.body;
+    models.updatePrices(id, param, price)
+      .then(() => {
+        res.sendStatus(200);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(400);
+      });
+  },
+  getBookings: (req, res) => {
+    const { id } = req.params;
+    models.getBookings(id)
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(400);
+      });
+  },
+  getBookingsRooms: (req, res) => {
+    const { id } = req.params;
+    const param = Number(req.query.type);
+    models.getBookingsRooms(id, param)
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(400);
+      });
+  },
+  addBooking: (req, res) => {
+    console.log(req.body);
+    models.addBooking(req.body)
+      .then(() => {
+        res.sendStatus(200);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(400);
+      });
+  },
+  deleteBooking: (req, res) => {
+    models.deleteBooking(req.params)
+      .then(() => {
+        res.sendStatus(200);
+      })
+      .catch((err) => {
+        console.error(err);
         res.sendStatus(400);
       });
   },

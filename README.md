@@ -63,7 +63,7 @@ Reponse: HTTP/1.1 200 OK
 ## Pricing
 ### GET
 ```
-GET /hotels/:id/prices?type='room-type'
+GET /hotels/:id/prices/room?type='room-type'
 # Get pricing for certain room type in hotel.
 
 Request Body: None.
@@ -76,7 +76,7 @@ Response = {
 ```
 ## PUT
 ```
-PUT /hotels/:id/prices?type='room-type'
+PUT /hotels/:id/prices/room?type='room-type'
 # Update partner pricing for certain room type hotel
 
 Request Body: {
@@ -127,7 +127,7 @@ Response = [
 ```
 ### GET
 ```
-GET /hotels/:id/bookings?type='room-type'
+GET /hotels/:id/bookings/room?type='room-type'
 # Get booking information about a certain room type in hotel.
 
 Request Body: None.

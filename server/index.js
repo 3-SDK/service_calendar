@@ -2,7 +2,7 @@ const express = require('express');
 
 const app = express();
 const parser = require('body-parser');
-const db = require('./db.js');
+// const db = require('./db.js');
 const router = require('./routes.js');
 
 app.use(parser.urlencoded({ extended: true }));
