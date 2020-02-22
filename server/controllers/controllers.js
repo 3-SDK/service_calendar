@@ -4,8 +4,7 @@ const models = require('../models');
 
 module.exports = {
   getHotelInfo: (req, res) => {
-    console.log(req.params);
-    models.getHotelInfo()
+    models.getHotelInfo(req.params.id)
       .then((data) => {
         res.json(data);
       })
@@ -15,13 +14,12 @@ module.exports = {
       });
   },
   getPrices: (req, res) => {
-    console.log('Param: ', req.params);
-    console.log('Query: ', req.query);
-    console.log('URL', req.url);
-    models.getPrices()
+    const { id } = req.params;
+    const param = req.query.type;
+
+    models.getPrices(id, param)
       .then((data) => {
-        // res.json(data);
-        res.sendStatus(200);
+        res.json(data);
       })
       .catch((err) => {
         console.log(err);
@@ -29,10 +27,11 @@ module.exports = {
       });
   },
   updatePrices: (req, res) => {
-    console.log(req.params);
-    models.updatePrices()
-      .then((data) => {
-        // res.json(data);
+    const { id } = req.params;
+    const param = Number(req.query.type);
+    const { price } = req.body;
+    models.updatePrices(id, param, price)
+      .then(() => {
         res.sendStatus(200);
       })
       .catch((err) => {
@@ -41,11 +40,10 @@ module.exports = {
       });
   },
   getBookings: (req, res) => {
-    console.log(req.params);
-    models.getBookings()
+    const { id } = req.params;
+    models.getBookings(id)
       .then((data) => {
-        // res.json(data);
-        res.sendStatus(200);
+        res.json(data);
       })
       .catch((err) => {
         console.error(err);
@@ -53,11 +51,11 @@ module.exports = {
       });
   },
   getBookingsRooms: (req, res) => {
-    console.log(req.params);
-    models.getBookingsRooms()
+    const { id } = req.params;
+    const param = Number(req.query.type);
+    models.getBookingsRooms(id, param)
       .then((data) => {
-        // res.json(data);
-        res.sendStatus(200);
+        res.json(data);
       })
       .catch((err) => {
         console.error(err);
@@ -65,10 +63,9 @@ module.exports = {
       });
   },
   addBooking: (req, res) => {
-    console.log(req.params);
-    models.addBooking()
-      .then((data) => {
-        // res.json(data);
+    console.log(req.body);
+    models.addBooking(req.body)
+      .then(() => {
         res.sendStatus(200);
       })
       .catch((err) => {
@@ -77,10 +74,8 @@ module.exports = {
       });
   },
   deleteBooking: (req, res) => {
-    console.log(req.params);
     models.deleteBooking()
-      .then((data) => {
-        // res.json(data);
+      .then(() => {
         res.sendStatus(200);
       })
       .catch((err) => {

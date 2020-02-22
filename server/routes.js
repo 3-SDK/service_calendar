@@ -6,12 +6,6 @@ const controller = require('./controllers/controllers.js');
 // Hotels
 router.get('/:id', controller.getHotelInfo);
 
-// router.post('/:id', controller.post);
-
-// router.put('/:id', controller.put);
-
-// router.delete('/:id', controller.delete);
-
 // Partner prices
 router.get('/:id/prices/room?', controller.getPrices);
 
@@ -24,6 +18,6 @@ router.get('/:id/bookings/room?', controller.getBookingsRooms);
 
 router.post('/:id/bookings/', controller.addBooking);
 
-router.delete('/:id/bookings/', controller.deleteBooking);
+router.delete('/:id/bookings/:bookID', controller.deleteBooking);
 
 module.exports = router;
