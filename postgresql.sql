@@ -5,8 +5,7 @@ CREATE TABLE hotels (
   one_person_max_rooms INTEGER,
   two_person_max_rooms INTEGER,
   three_person_max_rooms INTEGER,
-  four_person_max_rooms INTEGER,
-  -- viewing_hotel TEXT []
+  four_person_max_rooms INTEGER
 );
 
 CREATE TABLE partners (
@@ -35,6 +34,8 @@ CREATE TABLE bookings (
   booked_rooms INTEGER
 );
 
+-- ALTER TABLE bookings ADD PRIMARY KEY(id);
+
 -- Temporary Tables to import data
 CREATE TABLE hotels_import (
   id INTEGER PRIMARY KEY,
@@ -57,6 +58,18 @@ CREATE TABLE hotels_import (
   four_person_room_discounted_price INTEGER,
   four_person_partner_names TEXT []
 );
+
+CREATE TABLE bookings_import (
+  id SERIAL,
+  hotel_id INTEGER REFERENCES hotels(id),
+  booked_start_date VARCHAR(50),
+  booked_end_date VARCHAR(50),
+  person_room_type INTEGER,
+  booked_rooms INTEGER
+);
+
+  -- viewing_hotel TEXT []
+
 
 -- Old table
 -- CREATE TABLE partners (
