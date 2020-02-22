@@ -1,32 +1,51 @@
-const { Client } = require('pg');
+// const { Client } = require('pg');
 
-const client = new Client();
-client.connect();
+// const client = new Client();
+// client.connect();
 
 // Promises
 
-const readItem = () => new Promise((resolve, reject) => {
+// Hotels
+const getHotelInfo = () => new Promise((resolve, reject) => {
   client
     .query('')
     .then((res) => resolve(res))
     .catch((err) => reject(err));
 });
 
-const createItem = () => new Promise((resolve, reject) => {
+const getPrices = () => new Promise((resolve, reject) => {
+  resolve('This works');
+});
+
+const updatePrices = () => new Promise((resolve, reject) => {
   client
     .query('')
     .then((res) => resolve(res))
     .catch((err) => reject(err));
 });
 
-const updateItem = () => new Promise((resolve, reject) => {
+const getBookings = () => new Promise((resolve, reject) => {
   client
     .query('')
     .then((res) => resolve(res))
     .catch((err) => reject(err));
 });
 
-const deleteItem = () => new Promise((resolve, reject) => {
+const getBookingsRooms = () => new Promise((resolve, reject) => {
+  client
+    .query('')
+    .then((res) => resolve(res))
+    .catch((err) => reject(err));
+});
+
+const addBooking = () => new Promise((resolve, reject) => {
+  client
+    .query('')
+    .then((res) => resolve(res))
+    .catch((err) => reject(err));
+});
+
+const deleteBooking = () => new Promise((resolve, reject) => {
   client
     .query('')
     .then((res) => resolve(res))
@@ -49,8 +68,11 @@ const deleteItem = () => new Promise((resolve, reject) => {
 // };
 
 module.exports = {
-  readItem,
-  createItem,
-  updateItem,
-  deleteItem,
+  getHotelInfo,
+  getPrices,
+  updatePrices,
+  getBookings,
+  getBookingsRooms,
+  addBooking,
+  deleteBooking,
 };

@@ -1,9 +1,11 @@
-const db = require('../db/cassandra.js');
+const db = require('../db/postgresql.js');
 
 module.exports = {
-  get: () => db.readItem(),
-  post: () => db.createItem(),
-  put: () => db.updateItem(),
-  delete: () => db.deleteItem(),
+  getHotelInfo: () => db.getHotelInfo(),
   getPrices: () => db.getPrices(),
+  updatePrices: () => db.updatePrices(),
+  getBookings: () => db.getBookings(),
+  getBookingsRooms: () => db.getBookingsRooms(),
+  addBooking: () => db.addBooking(),
+  deleteBooking: () => db.deleteBooking(),
 };
