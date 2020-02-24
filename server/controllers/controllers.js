@@ -4,7 +4,8 @@ const models = require('../models');
 
 module.exports = {
   getHotelInfo: (req, res) => {
-    models.getHotelInfo(req.params.id)
+    const { id } = req.params;
+    models.getHotelInfo(id)
       .then((data) => {
         res.json(data);
       })
@@ -28,8 +29,9 @@ module.exports = {
   },
   updatePrices: (req, res) => {
     const { id } = req.params;
-    const param = Number(req.query.type);
+    const param = req.query.type;
     const { price } = req.body;
+
     models.updatePrices(id, param, price)
       .then(() => {
         res.sendStatus(200);
@@ -52,8 +54,8 @@ module.exports = {
   },
   getBookingsRooms: (req, res) => {
     const { id } = req.params;
-    const param = Number(req.query.type);
-    models.getBookingsRooms(id, param)
+    const { type } = req.query;
+    models.getBookingsRooms(id, type)
       .then((data) => {
         res.json(data);
       })
@@ -63,7 +65,6 @@ module.exports = {
       });
   },
   addBooking: (req, res) => {
-    console.log(req.body);
     models.addBooking(req.body)
       .then(() => {
         res.sendStatus(200);

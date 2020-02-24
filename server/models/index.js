@@ -37,7 +37,7 @@ const getPrices = (id, param) => new Promise((resolve, reject) => {
   const roomType = determineRoomType(param);
 
   const queryStr = `SELECT ${roomType}_person_room_price, ${roomType}_person_room_discounted_price, \
-                    ${roomType}_person_partner_names FROM partners WHERE hotel_id = ${param};`;
+                    ${roomType}_person_partner_names FROM partners WHERE hotel_id = ${id};`;
   db
     .query(queryStr)
     .then((res) => resolve(res.rows))
@@ -79,7 +79,7 @@ const addBooking = (params) => new Promise((resolve, reject) => {
   } = params;
 
   const queryStr = `INSERT INTO bookings (hotel_id, booked_start_date, booked_end_date, person_room_type, booked_rooms) \
-                    VALUES (${hotelID}, '${startDate}', '${endDate}', ${Number(roomType)}, ${Number(rooms)});`;
+                    VALUES (${hotelID}, '${startDate}', '${endDate}', ${roomType}, ${rooms});`;
 
   db
     .query(queryStr)
