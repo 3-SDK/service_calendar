@@ -27,10 +27,24 @@ const getHotelInfo = (id) => new Promise((resolve, reject) => {
                   two_person_max_rooms, three_person_max_rooms, four_person_max_rooms, \
                   two_person_room_price, two_person_room_discounted_price, two_person_partner_names \
                   FROM hotels INNER JOIN partners ON hotels .id = partners.hotel_id WHERE hotels.id = ${id};`;
+
   db
-    .query(queryStr)
-    .then((res) => resolve(res.rows))
-    .catch((err) => reject(err));
+    .connect()
+    .then((client) => client
+      .query(queryStr)
+      .then((res) => {
+        client.release();
+        resolve(res.rows);
+      })
+      .catch((err) => {
+        client.release();
+        reject(err);
+      }));
+
+  // db
+  //   .query(queryStr)
+  //   .then((res) => resolve(res.rows))
+  //   .catch((err) => reject(err));
 });
 
 const getPrices = (id, param) => new Promise((resolve, reject) => {
@@ -38,10 +52,24 @@ const getPrices = (id, param) => new Promise((resolve, reject) => {
 
   const queryStr = `SELECT ${roomType}_person_room_price, ${roomType}_person_room_discounted_price, \
                     ${roomType}_person_partner_names FROM partners WHERE hotel_id = ${id};`;
+
   db
-    .query(queryStr)
-    .then((res) => resolve(res.rows))
-    .catch((err) => reject(err));
+    .connect()
+    .then((client) => client
+      .query(queryStr)
+      .then((res) => {
+        client.release();
+        resolve(res.rows);
+      })
+      .catch((err) => {
+        client.release();
+        reject(err);
+      }));
+
+  // db
+  //   .query(queryStr)
+  //   .then((res) => resolve(res.rows))
+  //   .catch((err) => reject(err));
 });
 
 const updatePrices = (id, param, value) => new Promise((resolve, reject) => {
@@ -50,27 +78,66 @@ const updatePrices = (id, param, value) => new Promise((resolve, reject) => {
   const queryStr = `UPDATE partners SET ${roomType}_person_room_price = ${value} WHERE hotel_id = ${id};`;
 
   db
-    .query(queryStr)
-    .then((res) => resolve(res))
-    .catch((err) => reject(err));
+    .connect()
+    .then((client) => client
+      .query(queryStr)
+      .then((res) => {
+        client.release();
+        resolve(res);
+      })
+      .catch((err) => {
+        client.release();
+        reject(err);
+      }));
+
+  // db
+  //   .query(queryStr)
+  //   .then((res) => resolve(res))
+  //   .catch((err) => reject(err));
 });
 
 const getBookings = (id) => new Promise((resolve, reject) => {
   const queryStr = `SELECT * FROM bookings WHERE hotel_id = ${id};`;
 
   db
-    .query(queryStr)
-    .then((res) => resolve(res.rows))
-    .catch((err) => reject(err));
+    .connect()
+    .then((client) => client
+      .query(queryStr)
+      .then((res) => {
+        client.release();
+        resolve(res.rows);
+      })
+      .catch((err) => {
+        client.release();
+        reject(err);
+      }));
+
+  // db
+  //   .query(queryStr)
+  //   .then((res) => resolve(res.rows))
+  //   .catch((err) => reject(err));
 });
 
 const getBookingsRooms = (id, param) => new Promise((resolve, reject) => {
   const queryStr = `SELECT * FROM bookings WHERE hotel_id = ${id} AND person_room_type = ${param};`;
 
   db
-    .query(queryStr)
-    .then((res) => resolve(res.rows))
-    .catch((err) => reject(err));
+    .connect()
+    .then((client) => client
+      .query(queryStr)
+      .then((res) => {
+        client.release();
+        resolve(res.rows);
+      })
+      .catch((err) => {
+        client.release();
+        reject(err);
+      }));
+
+  // db
+  //   .query(queryStr)
+  //   .then((res) => resolve(res.rows))
+  //   .catch((err) => reject(err));
 });
 
 const addBooking = (params) => new Promise((resolve, reject) => {
@@ -82,9 +149,22 @@ const addBooking = (params) => new Promise((resolve, reject) => {
                     VALUES (${hotelID}, '${startDate}', '${endDate}', ${roomType}, ${rooms});`;
 
   db
-    .query(queryStr)
-    .then((res) => resolve(res))
-    .catch((err) => reject(err));
+    .connect()
+    .then((client) => client
+      .query(queryStr)
+      .then((res) => {
+        client.release();
+        resolve(res);
+      })
+      .catch((err) => {
+        client.release();
+        reject(err);
+      }));
+
+  // db
+  //   .query(queryStr)
+  //   .then((res) => resolve(res))
+  //   .catch((err) => reject(err));
 });
 
 const deleteBooking = (params) => new Promise((resolve, reject) => {
@@ -93,9 +173,22 @@ const deleteBooking = (params) => new Promise((resolve, reject) => {
   const queryStr = `DELETE FROM bookings WHERE id = ${Number(bookID)} AND hotel_id = ${Number(id)};`;
 
   db
-    .query(queryStr)
-    .then((res) => resolve(res))
-    .catch((err) => reject(err));
+    .connect()
+    .then((client) => client
+      .query(queryStr)
+      .then((res) => {
+        client.release();
+        resolve(res.rows);
+      })
+      .catch((err) => {
+        client.release();
+        reject(err);
+      }));
+
+  // db
+  //   .query(queryStr)
+  //   .then((res) => resolve(res))
+  //   .catch((err) => reject(err));
 });
 
 module.exports = {
