@@ -27,13 +27,15 @@ CREATE TABLE partners (
 
 CREATE TABLE bookings (
   id SERIAL PRIMARY KEY,
-  hotel_id INTEGER REFERENCES hotels(id),
+  hotel_id INTEGER,
   booked_start_date VARCHAR(50),
   booked_end_date VARCHAR(50),
   person_room_type INTEGER,
   booked_rooms INTEGER
 );
 
+ALTER TABLE bookings
+ADD CONSTRAINT fk_hotel FOREIGN KEY (hotel_id) REFERENCES hotels (id);
 -- ALTER TABLE bookings ADD PRIMARY KEY(id);
 
 -- Temporary Tables to import data
@@ -61,7 +63,7 @@ CREATE TABLE hotels_import (
 
 CREATE TABLE bookings_import (
   id SERIAL,
-  hotel_id INTEGER REFERENCES hotels(id),
+  hotel_id INTEGER,
   booked_start_date VARCHAR(50),
   booked_end_date VARCHAR(50),
   person_room_type INTEGER,

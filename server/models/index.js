@@ -27,6 +27,20 @@ const getHotelInfo = (id) => new Promise((resolve, reject) => {
                   two_person_max_rooms, three_person_max_rooms, four_person_max_rooms, \
                   two_person_room_price, two_person_room_discounted_price, two_person_partner_names \
                   FROM hotels INNER JOIN partners ON hotels .id = partners.hotel_id WHERE hotels.id = ${id};`;
+
+  // db
+  //   .connect()
+  //   .then((client) => client
+  //     .query(queryStr)
+  //     .then((res) => {
+  //       client.release();
+  //       resolve(res.rows);
+  //     })
+  //     .catch((err) => {
+  //       client.release();
+  //       reject(err);
+  //     }));
+
   db
     .query(queryStr)
     .then((res) => resolve(res.rows))
@@ -38,6 +52,20 @@ const getPrices = (id, param) => new Promise((resolve, reject) => {
 
   const queryStr = `SELECT ${roomType}_person_room_price, ${roomType}_person_room_discounted_price, \
                     ${roomType}_person_partner_names FROM partners WHERE hotel_id = ${id};`;
+
+  // db
+  //   .connect()
+  //   .then((client) => client
+  //     .query(queryStr)
+  //     .then((res) => {
+  //       client.release();
+  //       resolve(res.rows);
+  //     })
+  //     .catch((err) => {
+  //       client.release();
+  //       reject(err);
+  //     }));
+
   db
     .query(queryStr)
     .then((res) => resolve(res.rows))
@@ -49,6 +77,19 @@ const updatePrices = (id, param, value) => new Promise((resolve, reject) => {
 
   const queryStr = `UPDATE partners SET ${roomType}_person_room_price = ${value} WHERE hotel_id = ${id};`;
 
+  // db
+  //   .connect()
+  //   .then((client) => client
+  //     .query(queryStr)
+  //     .then((res) => {
+  //       client.release();
+  //       resolve(res);
+  //     })
+  //     .catch((err) => {
+  //       client.release();
+  //       reject(err);
+  //     }));
+
   db
     .query(queryStr)
     .then((res) => resolve(res))
@@ -58,6 +99,19 @@ const updatePrices = (id, param, value) => new Promise((resolve, reject) => {
 const getBookings = (id) => new Promise((resolve, reject) => {
   const queryStr = `SELECT * FROM bookings WHERE hotel_id = ${id};`;
 
+  // db
+  //   .connect()
+  //   .then((client) => client
+  //     .query(queryStr)
+  //     .then((res) => {
+  //       client.release();
+  //       resolve(res.rows);
+  //     })
+  //     .catch((err) => {
+  //       client.release();
+  //       reject(err);
+  //     }));
+
   db
     .query(queryStr)
     .then((res) => resolve(res.rows))
@@ -66,6 +120,19 @@ const getBookings = (id) => new Promise((resolve, reject) => {
 
 const getBookingsRooms = (id, param) => new Promise((resolve, reject) => {
   const queryStr = `SELECT * FROM bookings WHERE hotel_id = ${id} AND person_room_type = ${param};`;
+
+  // db
+  //   .connect()
+  //   .then((client) => client
+  //     .query(queryStr)
+  //     .then((res) => {
+  //       client.release();
+  //       resolve(res.rows);
+  //     })
+  //     .catch((err) => {
+  //       client.release();
+  //       reject(err);
+  //     }));
 
   db
     .query(queryStr)
@@ -81,6 +148,19 @@ const addBooking = (params) => new Promise((resolve, reject) => {
   const queryStr = `INSERT INTO bookings (hotel_id, booked_start_date, booked_end_date, person_room_type, booked_rooms) \
                     VALUES (${hotelID}, '${startDate}', '${endDate}', ${roomType}, ${rooms});`;
 
+  // db
+  //   .connect()
+  //   .then((client) => client
+  //     .query(queryStr)
+  //     .then((res) => {
+  //       client.release();
+  //       resolve(res);
+  //     })
+  //     .catch((err) => {
+  //       client.release();
+  //       reject(err);
+  //     }));
+
   db
     .query(queryStr)
     .then((res) => resolve(res))
@@ -91,6 +171,19 @@ const deleteBooking = (params) => new Promise((resolve, reject) => {
   const { id, bookID } = params;
 
   const queryStr = `DELETE FROM bookings WHERE id = ${Number(bookID)} AND hotel_id = ${Number(id)};`;
+
+  // db
+  //   .connect()
+  //   .then((client) => client
+  //     .query(queryStr)
+  //     .then((res) => {
+  //       client.release();
+  //       resolve(res.rows);
+  //     })
+  //     .catch((err) => {
+  //       client.release();
+  //       reject(err);
+  //     }));
 
   db
     .query(queryStr)
