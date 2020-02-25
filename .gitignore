@@ -1,3 +1,8 @@
 /node_modules
 bundle.js
 .DS_Store
+newrelic.js
+cassandraseed/bookings.csv
+cassandraseed/hotels.csv
+cassandraseed/viewers.csv
+newrelic_agent.log
